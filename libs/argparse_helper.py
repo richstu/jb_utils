@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import argparse
-def initialize_arguments(args, list_args):
+def initialize_arguments(args, list_args = []):
 
   # Get rid non list_args
   for key in args:
