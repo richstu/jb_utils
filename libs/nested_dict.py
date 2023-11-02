@@ -138,3 +138,7 @@ def load_json_file(json_filename, no_null=True):
     check_key_nested_dict(out_dict, None)
   return out_dict
 
+def load_json_file_py3(json_filename, no_null=True):
+  with open(json_filename) as json_file:
+    out_dict = json.load(json_file)
+  return out_dict
