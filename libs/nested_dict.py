@@ -1,4 +1,8 @@
 import json
+import sys
+if sys.version_info[0] >= 3:
+  unicode = str
+
 
 def fill_dict(target_dict, key, item):
   if key not in target_dict:
