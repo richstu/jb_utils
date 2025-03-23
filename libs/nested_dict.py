@@ -128,10 +128,15 @@ def convert_to_ascii(out_dict):
   elif isinstance(out_dict, unicode): out_dict = value.encode('ascii') 
 
 def load_json_file(json_filename, no_null=True):
-  with open(json_filename) as json_file:
-    out_dict = json.load(json_file, object_hook=ascii_encode_dict)
+  if sys.version_info[0] >= 3:
+    with open(json_filename) as json_file:
+      out_dict = json.load(json_file)
+  else:
+    with open(json_filename) as json_file:
+      out_dict = json.load(json_file, object_hook=ascii_encode_dict)
+    #nested_dict.check_key_nested_dict(out_dict, 'null')
+    convert_to_ascii(out_dict)
   #nested_dict.check_key_nested_dict(out_dict, 'null')
-  convert_to_ascii(out_dict)
   if no_null:
     remove_key_nested_dict(out_dict, 'null')
     check_key_nested_dict(out_dict, 'null')
