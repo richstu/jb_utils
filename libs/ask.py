@@ -1,6 +1,11 @@
 #!/usr/bin/env python
+import sys
+
 def ask_key(question, valids, default=None):
-  answer = raw_input(question)
+  if sys.version_info[0] >= 3:
+    answer = input(question)
+  else:
+    answer = raw_input(question)
   if '' not in valids: valids.append('')
   if answer not in valids:
     print('[Error] Did not enter valid key: '+', '.join(valids))
